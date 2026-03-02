@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GATE × Shizuku AI — 連携パートナーシップのご提案</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Inter:wght@300;400;600;700;900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0e1a;
+      --bg-secondary: #111827;
+      --bg-card: rgba(255, 255, 255, 0.04);
+      --bg-glass: rgba(255, 255, 255, 0.06);
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --text-primary: #f0f4ff;
+      --text-secondary: rgba(240, 244, 255, 0.65);
+      --text-muted: rgba(240, 244, 255, 0.4);
+      --accent-1: #6366f1;
+      --accent-2: #a855f7;
+      --accent-3: #ec4899;
+      --accent-4: #06b6d4;
+      --gradient-hero: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+      --gradient-subtle: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.10) 100%);
+      --shadow-glow: 0 0 60px rgba(99, 102, 241, 0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', 'Inter', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    /* ===== Slide System ===== */
+    .slide {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 80px;
+      position: relative;
+      scroll-snap-align: start;
+      overflow: hidden;
+    }
+
+    .slide::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(99, 102, 241, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(168, 85, 247, 0.04) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .slide-number {
+      position: absolute;
+      bottom: 30px;
+      right: 40px;
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+      letter-spacing: 2px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ===== Hero Slide ===== */
+    .hero {
+      text-align: center;
+      background: var(--bg-primary);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse-glow 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+
+      0%,
+      100% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.15);
+      }
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 20px;
+      border: 1px solid var(--border-glass);
+      border-radius: 100px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      backdrop-filter: blur(10px);
+      background: var(--bg-glass);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 6vw, 80px);
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1.1;
+      background: var(--gradient-hero);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h2 {
+      font-size: clamp(18px, 2.5vw, 28px);
+      font-weight: 300;
+      color: var(--text-secondary);
+      margin-bottom: 50px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-meta {
+      font-size: 14px;
+      color: var(--text-muted);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== Section Titles ===== */
+    .section-tag {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .tag-insight {
+      background: rgba(99, 102, 241, 0.15);
+      color: #818cf8;
+    }
+
+    .tag-proposal {
+      background: rgba(168, 85, 247, 0.15);
+      color: #c084fc;
+    }
+
+    .tag-case {
+      background: rgba(236, 72, 153, 0.15);
+      color: #f472b6;
+    }
+
+    .tag-benefit {
+      background: rgba(6, 182, 212, 0.15);
+      color: #22d3ee;
+    }
+
+    .tag-action {
+      background: rgba(34, 197, 94, 0.15);
+      color: #4ade80;
+    }
+
+    .slide h2 {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.2;
+      margin-bottom: 40px;
+    }
+
+    .slide h2 .accent {
+      background: var(--gradient-hero);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .slide h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+
+    /* ===== Grid Cards ===== */
+    .card-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .card-grid.cols-2 {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .card-grid.cols-3 {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .card-grid.cols-4 {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .card {
+      background: var(--bg-glass);
+      border: 1px solid var(--border-glass);
+      border-radius: 16px;
+      padding: 28px;
+      backdrop-filter: blur(12px);
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(99, 102, 241, 0.3);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .card-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .card h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+
+    .card p,
+    .card li {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .card ul li {
+      padding: 5px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .card ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent-1);
+      font-weight: 600;
+    }
+
+    /* ===== Key Points List ===== */
+    .key-points {
+      list-style: none;
+      padding: 0;
+    }
+
+    .key-points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border-glass);
+      font-size: 17px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .key-points li:last-child {
+      border-bottom: none;
+    }
+
+    .kp-num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      background: var(--gradient-subtle);
+      border: 1px solid var(--border-glass);
+      color: #818cf8;
+    }
+
+    .kp-highlight {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* ===== Case Study Box ===== */
+    .case-study {
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.06), rgba(168, 85, 247, 0.06));
+      border: 1px solid rgba(236, 72, 153, 0.15);
+      border-radius: 20px;
+      padding: 40px;
+      margin-top: 10px;
+    }
+
+    .case-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .case-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #ec4899, #a855f7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+
+    .case-title h3 {
+      margin-bottom: 4px;
+      font-size: 22px;
+    }
+
+    .case-title p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .case-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .case-detail h4 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .case-detail p,
+    .case-detail li {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    .case-detail ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .case-detail ul li::before {
+      content: '•';
+      color: #f472b6;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    /* ===== Timeline ===== */
+    .timeline {
+      position: relative;
+      padding-left: 40px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent-1), var(--accent-2), var(--accent-3));
+      border-radius: 2px;
+    }
+
+    .tl-item {
+      position: relative;
+      padding: 16px 0 30px 30px;
+    }
+
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -33px;
+      top: 22px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent-1);
+      border: 3px solid var(--bg-primary);
+      box-shadow: 0 0 12px rgba(99, 102, 241, 0.5);
+    }
+
+    .tl-date {
+      font-size: 13px;
+      font-weight: 600;
+      color: #818cf8;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .tl-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .tl-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    /* ===== Two Column ===== */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    /* ===== Stat Highlight ===== */
+    .stat-row {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .stat-box {
+      flex: 1;
+      min-width: 140px;
+      background: var(--bg-glass);
+      border: 1px solid var(--border-glass);
+      border-radius: 14px;
+      padding: 22px;
+      text-align: center;
+    }
+
+    .stat-box .stat-value {
+      font-size: 28px;
+      font-weight: 900;
+      font-family: 'Inter', sans-serif;
+      background: var(--gradient-hero);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-box .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 6px;
+      letter-spacing: 1px;
+    }
+
+    /* ===== Benefit Table ===== */
+    .benefit-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border-glass);
+    }
+
+    .benefit-table th {
+      padding: 16px 24px;
+      text-align: left;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: rgba(99, 102, 241, 0.1);
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .benefit-table td {
+      padding: 16px 24px;
+      font-size: 15px;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border-glass);
+      background: var(--bg-glass);
+    }
+
+    .benefit-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .benefit-table .emoji-col {
+      font-size: 20px;
+      width: 50px;
+      text-align: center;
+    }
+
+    /* ===== CTA Slide ===== */
+    .cta-slide {
+      text-align: center;
+    }
+
+    .cta-slide h2 {
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 900;
+      background: var(--gradient-hero);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 24px;
+    }
+
+    .cta-slide p {
+      font-size: 20px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.8;
+    }
+
+    .cta-company {
+      font-size: 16px;
+      color: var(--text-muted);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    /* ===== Nav Dots ===== */
+    .nav-dots {
+      position: fixed;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 100;
+    }
+
+    .nav-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      padding: 0;
+    }
+
+    .nav-dot.active,
+    .nav-dot:hover {
+      background: var(--accent-1);
+      box-shadow: 0 0 10px rgba(99, 102, 241, 0.6);
+      transform: scale(1.4);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 900px) {
+      .slide {
+        padding: 40px 30px;
+      }
+
+      .card-grid.cols-2,
+      .card-grid.cols-3,
+      .card-grid.cols-4 {
+        grid-template-columns: 1fr;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .case-body {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-row {
+        flex-direction: column;
+      }
+    }
+
+    /* ===== Scroll Animation ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation Dots -->
+  <nav class="nav-dots" id="navDots"></nav>
+
+  <!-- ==================== SLIDE 1: HERO ==================== -->
+  <section class="slide hero" id="slide-1">
+    <div class="hero-badge">partnership proposal</div>
+    <h1>GATE × Shizuku AI</h1>
+    <h2>連携パートナーシップのご提案</h2>
+    <p class="hero-meta">株式会社GATE ｜ 2026年3月</p>
+    <span class="slide-number">01 / 13</span>
+  </section>
+
+  <!-- ==================== SLIDE 2: WHY SHIZUKU AI ==================== -->
+  <section class="slide" id="slide-2">
+    <span class="section-tag tag-insight">INSIGHT</span>
+    <h2>しずくAIが <span class="accent">注目される理由</span></h2>
+
+    <div class="stat-row fade-up">
+      <div class="stat-box">
+        <div class="stat-value">a16z</div>
+        <div class="stat-label">日本AI初の投資先</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">91 FPS</div>
+        <div class="stat-label">StreamDiffusion性能</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">GitHub #1</div>
+        <div class="stat-label">論文ランキング連日1位</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">JP+EN</div>
+        <div class="stat-label">バイリンガルAI対話</div>
+      </div>
+    </div>
+
+    <ul class="key-points fade-up">
+      <li>
+        <span class="kp-num">1</span>
+        <span>Andreessen Horowitz（a16z）が<span class="kp-highlight">日本のAIスタートアップに初めて投資</span>。世界が認めたポテンシャル</span>
+      </li>
+      <li>
+        <span class="kp-num">2</span>
+        <span>創業者 Akio Kodaira（アキ先生）は <span class="kp-highlight">UC Berkeley博士 × Meta
+            AI経験者</span>。StreamDiffusion論文は世界的評価</span>
+      </li>
+      <li>
+        <span class="kp-num">3</span>
+        <span>AI VTuber「しずく」を2026年1月に再始動。<span class="kp-highlight">梵そよぎ（梶裕貴AI）とのコラボを公式Xで発表</span>（詳細は後日）</span>
+      </li>
+      <li>
+        <span class="kp-num">4</span>
+        <span>ゴールは「AI VTuber」ではなく<span class="kp-highlight">「AIコンパニオンプラットフォーム」</span>。日常に寄り添うAIパートナーの創造</span>
+      </li>
+    </ul>
+    <span class="slide-number">02 / 13</span>
+  </section>
+
+  <!-- ==================== SLIDE 3: STRATEGY ANALYSIS ==================== -->
+  <section class="slide" id="slide-3">
+    <span class="section-tag tag-insight">ANALYSIS</span>
+    <h2>アキ先生が <span class="accent">これからやろうとしていること</span></h2>
+
+    <div class="two-col fade-up">
+      <div>
+        <div class="card" style="margin-bottom: 20px;">
+          <span class="card-icon">🌐</span>
+          <h4>戦略①：マルチプラットフォーム展開</h4>
+          <p>YouTube、Discord、Xなど複数プラットフォームにしずくを展開。ユーザーとのインタラクションデータを大量収集し、会話能力を継続的に強化。「AI会話の単調さ」を技術的に解決するのが最重要課題。</p>
+        </div>
+        <div class="card" style="margin-bottom: 20px;">
+          <span class="card-icon">🎤</span>
+          <h4>戦略②：多言語音声合成の高度化</h4>
+          <p>日本語・英語バイリンガルは実装済み。さらなる多言語展開でグローバル市場を狙う。StreamDiffusion技術でリアルタイム音声生成を進化させる。</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">🤝</span>
+          <h4>戦略③：AIキャラクター × エンタメの融合</h4>
+          <p>梵そよぎとのAI VTuberコラボを公式発表。AIキャラクターと実在タレント/声優の連携モデルを確立し、日本のキャラクター文化をAI技術で次のステージへ。</p>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom: 20px;">
+          <span class="card-icon">🏠</span>
+          <h4>戦略④：AIコンパニオン・プラットフォーム</h4>
+          <p>単なるVTuberではなく「朝から夜まで日常に寄り添うAIエージェント」を目指す。学習・仕事・生活を包括サポートするパートナーAI。Character.AI / Replika市場への日本発の挑戦。</p>
+        </div>
+        <div class="card" style="margin-bottom: 20px;">
+          <span class="card-icon">🔬</span>
+          <h4>戦略⑤：日本拠点AIラボの設立</h4>
+          <p>a16z資金で日本にAIキャラクター開発専用ラボを設立。AI研究と日本のアニメ・キャラクター文化を融合した独自R&D拠点を構築。</p>
+        </div>
+        <div class="card"
+          style="background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(168,85,247,0.1)); border-color: rgba(99,102,241,0.25);">
+          <h4 style="color: #818cf8;">💡 核心的仮説</h4>
+          <p style="font-size: 15px;">アキ先生は「AI VTuber」を最終ゴールとしていない。<strong
+              style="color: #c084fc;">AIコンパニオンプラットフォーム</strong>を構築し、しずくはその最初のフラッグシップキャラクター。将来的には複数のAIキャラクターを同プラットフォーム上で展開する戦略と推察。
+          </p>
+        </div>
+      </div>
+    </div>
+    <span class="slide-number">03 / 13</span>
+  </section>
+
+  <!-- ==================== SLIDE 3: CASE STUDY ==================== -->
+  <section class="slide" id="slide-4">
+    <span class="section-tag tag-case">CASE STUDY</span>
+    <h2>先行事例：<span class="accent">梶裕貴 × 梵そよぎ</span></h2>
+
+    <div class="case-study fade-up">
+      <div class="case-header">
+        <div class="case-avatar">🎭</div>
+        <div class="case-title">
+          <h3>そよぎフラクタル・プロジェクト</h3>
+          <p>声優・梶裕貴が「自らの声」をAI化し、事務所を独立して新会社を設立した前例のない挑戦</p>
+        </div>
+      </div>
+
+      <div class="case-body">
+        <div class="case-detail">
+          <h4>プロジェクト概要</h4>
+          <ul>
+            <li>声優活動20周年を記念し2023年始動</li>
+            <li>梶裕貴の声をベースにしたAIキャラクター「梵そよぎ」を開発</li>
+            <li>CeVIO AI / VoiSona で歌声・話し声を提供</li>
+            <li>音声チャットボット「梵そよぎAI」でリアルタイム会話が可能</li>
+            <li>2026年4月、ヴィムスから独立し新会社代表に就任</li>
+          </ul>
+        </div>
+        <div class="case-detail">
+          <h4>参画クリエイター</h4>
+          <ul>
+            <li>キャラクターデザイン：<strong>米山舞</strong></li>
+            <li>漫画化ネーム：<strong>諫山創</strong>（進撃の巨人）</li>
+            <li>音声AI技術：<strong>ElevenLabs</strong>（米国AI企業）</li>
+            <li>音声合成基盤：<strong>CeVIO AI / VoiSona</strong></li>
+          </ul>
+        </div>
+        <div class="case-detail">
+          <h4>ビジネスモデル</h4>
+          <ul>
+            <li>音声ソフト買い切り販売（8,980〜19,800円）</li>
+            <li>月額サブスク（660〜880円/月）</li>
+            <li>クラウドファンディングによる資金調達</li>
+            <li>クリエイター向け商用利用ライセンス</li>
+            <li>IPエコシステム（漫画・ライブ・ゲーム展開）</li>
+          </ul>
+        </div>
+        <div class="case-detail">
+          <h4>業界への示唆</h4>
+          <ul>
+            <li>「声の権利」を自らコントロールする新モデル</li>
+            <li>フロー型収益（出演料）→ ストック型収益（サブスク）への転換</li>
+            <li>無断AI利用への対抗としての「公認AI」戦略</li>
+            <li><strong>しずくAIとのAI VTuberコラボを公式Xで発表（詳細・日程は後日発表予定）</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <span class="slide-number">04 / 13</span>
+  </section>
+
+  <!-- ==================== SLIDE 4: WHY GATE ==================== -->
+  <section class="slide" id="slide-5">
+    <span class="section-tag tag-insight">SYNERGY</span>
+    <h2>なぜ <span class="accent">GATE × Shizuku AI</span> なのか</h2>
+
+    <div class="two-col fade-up">
+      <div>
+        <ul class="key-points">
+          <li>
+            <span class="kp-num">🔬</span>
+            <span><span class="kp-highlight">Shizuku
+                AIの課題</span>：世界トップクラスのAI技術を持つが、エンタメ業界のルール・人脈・制作力はテック企業だけでは補えない</span>
+          </li>
+          <li>
+            <span class="kp-num">🎬</span>
+            <span><span class="kp-highlight">GATEの強み</span>：タレントIP・制作力・メディアコネクション・企業案件の営業力を保有</span>
+          </li>
+          <li>
+            <span class="kp-num">🤝</span>
+            <span><span class="kp-highlight">掛け合わせの価値</span>：「AIキャラクター × リアルタレント」の新市場を共同開拓できる</span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <div class="card" style="background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(168,85,247,0.08));">
+          <h4 style="text-align:center; font-size:18px; margin-bottom:20px;">梶裕貴モデルの次を狙う</h4>
+          <p style="text-align:center; font-size:15px;">
+            梶裕貴×梵そよぎが証明したのは<br>
+            <strong>「タレント × AI = 新収益モデル」</strong><br><br>
+            GATEが持つタレントIPと<br>
+            しずくAIの技術基盤を組み合わせれば<br>
+            <strong style="color: #c084fc;">次の成功事例</strong>をGATEが仕掛けられる
+          </p>
+        </div>
+      </div>
+    </div>
+    <span class="slide-number">05 / 13</span>
+  </section>
+
+  <!-- ==================== SLIDE 5: PROPOSAL 1 ==================== -->
+  <section class="slide" id="slide-6">
+    <span class="section-tag tag-proposal">PROPOSAL 01</span>
+    <h2>コラボレーション <span class="accent">配信・コンテンツ企画</span></h2>
+
+    <div class="card-grid cols-2 fade-up">
+      <div class="card">
+        <span class="card-icon">🎙️</span>
+        <h4>コラボ配信</h4>
+        <ul>
+          <li>しずく × GATEタレントの共演配信（YouTube / Discord）</li>
+          <li>AI × リアルの共演による話題性の最大化</li>
+          <li>トーク番組、ゲーム実況、音楽コラボなど多彩なフォーマット</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="card-icon">⚡</span>
+        <h4>即実行メリット</h4>
+        <ul>
+          <li>低コストで高いPR効果</li>
+          <li>しずくAI側のプラットフォーム展開戦略と完全一致</li>
+          <li>コラボデータがAI進化のインプットに</li>
+        </ul>
+      </div>
+    </div>
+    <span class="slide-number">06 / 13</span>
+  </section>
+
+  <!-- ==================== SLIDE 6: PROPOSAL 2 ==================== -->
+  <section class="slide" id="slide-7">
+    <span class="section-tag tag-proposal">PROPOSAL 02</span>
+    <h2>タレント × AIキャラクターの <span class="accent">共同開発</span></h2>
+
+    <div class="card-grid cols-2 fade-up">
+      <div class="card">
+        <span class="card-icon">🎤</span>
+        <h4>タレント音声AI化</h4>
+        <ul>
+          <li>GATEタレントの声・演技力を活用したAIキャラクター共同開発</li>
+          <li>梶裕貴×梵そよぎに続く「タレント×AI」の次の成功事例</li>
+          <li>タレントのファンベースをAIキャラクターに自然に導入</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="card-icon">💰</span>
+        <h4>新収益モデル</h4>
+        <ul>
+          <li>24時間稼働するタレントの「分身」が新たな収益源に</li>
+          <li>出演料（フロー型）→ サブスク・ライセンス（ストック型）</li>
+          <li>声の権利を適切に管理し、無断AI利用から保護</li>
+        </ul>
+      </div>
+    </div>
+    <span class="slide-number">07 / 13</span>
+  </section>
+
+  <!-- ==================== SLIDE 7: PROPOSAL 3 ==================== -->
+  <section class="slide" id="slide-8">
+    <span class="section-tag tag-proposal">PROPOSAL 03</span>
+    <h2>エンタメ業界への <span class="accent">橋渡し</span></h2>
+
+    <div class="card-grid cols-4 fade-up">
+      <div class="card">
+        <span class="card-icon">📺</span>
+        <h4>メディア露出</h4>
+        <p>テレビ・配信メディアへの露出機会の創出</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🏢</span>
+        <h4>企業案件</h4>
+        <p>しずくへの広告・CMタイアップの獲得営業</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🎪</span>
+        <h4>イベント</h4>
+        <p>リアルイベント出演のプロデュース</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">⚖️</span>
+        <h4>権利・法務</h4>
+        <p>AIキャラクターの権利管理・PR対応</p>
+      </div>
+    </div>
+    <span class="slide-number">08 / 13</span>
+  </section>
+
+  <!-- ==================== SLIDE 8: PROPOSAL 4 ==================== -->
+  <section class="slide" id="slide-9">
+    <span class="section-tag tag-proposal">PROPOSAL 04</span>
+    <h2>コンテンツ <span class="accent">制作力</span>の提供</h2>
+
+    <div class="card-grid cols-2 fade-up">
+      <div class="card">
+        <span class="card-icon">💬</span>
+        <h4>「AIとニンゲン」トーク番組</h4>
+        <p>しずくとGATEタレントが共演するYouTube / 配信番組。AI × リアルのトークの化学反応でバイラルを狙う。</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🌟</span>
+        <h4>AI VTuberオーディション</h4>
+        <p>GATEが主催し、しずくAI技術で新たなAI VTuberを生み出す公開オーディション企画。</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🎬</span>
+        <h4>ショートドラマ制作</h4>
+        <p>AIキャラクターとリアル俳優が共演するショートドラマ。SNS配信向けに最適化。</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">📚</span>
+        <h4>教育コンテンツ</h4>
+        <p>しずくが先生役のAI教育チャンネル。GATEタレントが生徒役で楽しく学ぶ形式。</p>
+      </div>
+    </div>
+    <span class="slide-number">09 / 13</span>
+  </section>
+
+  <!-- ==================== SLIDE 9: PROPOSAL 5 ==================== -->
+  <section class="slide" id="slide-10">
+    <span class="section-tag tag-proposal">PROPOSAL 05</span>
+    <h2>グローバル展開 <span class="accent">サポート</span></h2>
+
+    <div class="card-grid cols-3 fade-up">
+      <div class="card">
+        <span class="card-icon">🌏</span>
+        <h4>アジア圏PR</h4>
+        <ul>
+          <li>日本のエンタメメディアへの露出支援</li>
+          <li>アジア圏メディアへのPR活動</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="card-icon">🎪</span>
+        <h4>海外イベント</h4>
+        <ul>
+          <li>Anime Expo / ComiConブース出展</li>
+          <li>ステージ企画・ライブパフォーマンス</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="card-icon">🗣️</span>
+        <h4>バイリンガルコンテンツ</h4>
+        <ul>
+          <li>日本語×英語のコンテンツ制作</li>
+          <li>海外クリエイターとのコラボ仲介</li>
+        </ul>
+      </div>
+    </div>
+    <span class="slide-number">10 / 13</span>
+  </section>
+
+  <!-- ==================== SLIDE 10: BENEFITS ==================== -->
+  <section class="slide" id="slide-11">
+    <span class="section-tag tag-benefit">WIN-WIN</span>
+    <h2>パートナーシップの <span class="accent">メリット</span></h2>
+
+    <div class="fade-up">
+      <table class="benefit-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Shizuku AI側のメリット</th>
+            <th>GATE側のメリット</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="emoji-col">🔗</td>
+            <td>エンタメ業界の人脈・ルールを即座に活用</td>
+            <td>最先端AI技術へのアクセス</td>
+          </tr>
+          <tr>
+            <td class="emoji-col">🎭</td>
+            <td>タレントIPによるコンテンツの多様化</td>
+            <td>所属タレントの新たな活動領域・収益源</td>
+          </tr>
+          <tr>
+            <td class="emoji-col">💼</td>
+            <td>企業案件・イベントの営業力獲得</td>
+            <td>AI VTuber市場への早期参入</td>
+          </tr>
+          <tr>
+            <td class="emoji-col">🛡️</td>
+            <td>権利管理・危機管理のプロサポート</td>
+            <td>a16z投資先との連携による業界ポジション強化</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <span class="slide-number">11 / 13</span>
+  </section>
+
+  <!-- ==================== SLIDE 11: ACTION PLAN ==================== -->
+  <section class="slide" id="slide-12">
+    <span class="section-tag tag-action">ACTION PLAN</span>
+    <h2>アクション <span class="accent">プラン</span></h2>
+
+    <div class="two-col fade-up">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">Phase 1 — 2026年3月</div>
+          <div class="tl-title">初回ミーティング・ビジョン共有</div>
+          <div class="tl-desc">相互理解を深め、連携の方向性を確認</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Phase 2 — 2026年4月</div>
+          <div class="tl-title">コラボ配信テスト企画</div>
+          <div class="tl-desc">小規模なコラボ配信を実施し反応を検証</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Phase 3 — 2026年5月〜</div>
+          <div class="tl-title">企業案件・イベント営業開始</div>
+          <div class="tl-desc">GATEの営業チャネルにしずくを組み込み</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Phase 4 — 2026年下半期</div>
+          <div class="tl-title">タレント音声AIキャラクター共同開発</div>
+          <div class="tl-desc">GATEタレントの声をベースにAIキャラを共同制作</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Phase 5 — 2027年〜</div>
+          <div class="tl-title">AI × リアル番組コンテンツの本格制作</div>
+          <div class="tl-desc">レギュラー番組やメディアミックス展開</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card"
+          style="background: linear-gradient(135deg, rgba(34,197,94,0.06), rgba(6,182,212,0.06)); border-color: rgba(34,197,94,0.15);">
+          <h4 style="color: #4ade80; margin-bottom: 16px;">💡 なぜ今なのか</h4>
+          <ul>
+            <li>a16z投資直後で注目度が最高潮</li>
+            <li>しずくAI再始動でパートナー探し中</li>
+            <li>AI VTuber市場は2033年に136〜200億ドル規模に成長予測</li>
+            <li>先行する事務所がまだ少ない「ブルーオーシャン」</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <span class="slide-number">12 / 13</span>
+  </section>
+
+  <!-- ==================== SLIDE 12: CTA ==================== -->
+  <section class="slide cta-slide" id="slide-13">
+    <h2>Let's Create the Future<br>Together.</h2>
+    <p>まずはカジュアルにお話しさせてください。<br>しずくAIとGATEの可能性を、一緒に探りましょう。</p>
+    <div class="cta-company">株式会社GATE</div>
+    <span class="slide-number">13 / 13</span>
+  </section>
+
+  <script>
+    // Navigation dots
+    const slides = document.querySelectorAll('.slide');
+    const navDots = document.getElementById('navDots');
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'nav-dot';
+      dot.addEventListener('click', () => {
+        slides[i].scrollIntoView({ behavior: 'smooth' });
+      });
+      navDots.appendChild(dot);
+    });
+
+    // Active dot + fade-up observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Update active dot
+          const idx = Array.from(slides).indexOf(entry.target);
+          document.querySelectorAll('.nav-dot').forEach((d, i) => {
+            d.classList.toggle('active', i === idx);
+          });
+          // Trigger fade-up
+          entry.target.querySelectorAll('.fade-up').forEach(el => {
+            el.classList.add('visible');
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+
+    slides.forEach(s => observer.observe(s));
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      const currentIdx = Array.from(slides).findIndex(s => {
+        const rect = s.getBoundingClientRect();
+        return rect.top >= -100 && rect.top < window.innerHeight / 2;
+      });
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
+        e.preventDefault();
+        if (currentIdx < slides.length - 1) slides[currentIdx + 1].scrollIntoView({ behavior: 'smooth' });
+      }
+      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        if (currentIdx > 0) slides[currentIdx - 1].scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  </script>
+</body>
+
+</html>
